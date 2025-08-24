@@ -1,0 +1,25 @@
+.logo {
+    position: fixed; /* har doim ekranning yuqorisida turishi uchun */
+    top: 10px;       /* yuqoridan masofa */
+    left: 50%;       /* o‘rtaga tekislash */
+    transform: translateX(-50%); /* o‘rtaga to‘liq joylashish uchun */
+    cursor: pointer;
+    height: 50px;    /* logoning balandligi */
+    width: auto;
+    z-index: 1000;   /* boshqa elementlar ustida turishi uchun */
+    margin-top: 20px;
+}
+
+
+/* 📱 Responsivlik */
+@media (max-width: 1080px) {
+    .logo {
+        height: 80px !important;
+        width: auto !important;
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+
+}

@@ -21,6 +21,10 @@
     animation: fadeInUp 0.6s ease forwards;
 }
 
+.no-categories-message{
+    text-align: center;
+}
+
 /* Sarlavha */
 .home-title {
     font-size: 1.8rem;
@@ -101,6 +105,41 @@
     text-overflow: ellipsis;
 }
 
+/* Til selector container */
+.language-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Label */
+.language-selector label {
+    font-weight: bold;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+/* Select box */
+.language-selector select {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover va focus effekti */
+.language-selector select:hover,
+.language-selector select:focus {
+    border-color: #888;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+
 
 
 /* 📱 Responsivlik */
@@ -148,6 +187,16 @@
 
     .home-logo img:hover {
         transform: scale(1.05);
+    }
+
+    .language-selector select {
+        font-size: 1.6rem;    /* Fontni kattalashtirish */
+        padding: 10px 16px;   /* Ichki paddingni kattalashtirish */
+        border-radius: 8px;   /* Biroz yumaloqlik */
+    }
+
+    .language-selector label {
+        font-size: 3rem;      /* Label fontini ham kattalashtirish */
     }
 
 }

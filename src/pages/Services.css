@@ -78,6 +78,10 @@
     overflow: hidden;
 }
 
+.no-services-message{
+    text-align: center;
+}
+
 .service-image-wrapper img {
     width: 100%;
     height: 100%;

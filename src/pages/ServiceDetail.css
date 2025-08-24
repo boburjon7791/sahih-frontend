@@ -25,17 +25,26 @@
 }
 
 .media-wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, auto); /* Har doim 3 ta ustun */
+    justify-content: center; /* Markazdan joylashtirish */
+    justify-items: center;
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
+.no-service-video,
+.no-service-image{
+    text-align: center;
+}
+
 .media-image,
 .media-video {
-    flex: 1;
     border-radius: 12px;
     object-fit: cover;
+    height: 300px; /* Siz bergan qiymat qoldi */
 }
+
 
 .media-image {
     height: 300px;
@@ -54,13 +63,20 @@
 /* Responsive for small screens */
 @media (max-width: 1080px) {
     .media-wrapper {
+        display: flex;
         flex-direction: column;
+    }
+
+    .no-service-video,
+    .no-service-image{
+        text-align: center;
+        font-size: 3.5rem;
     }
 
     .media-image,
     .media-video {
         width: 100%;
-        height: 200px;
+        height: 100%;
     }
 
     .service-title {

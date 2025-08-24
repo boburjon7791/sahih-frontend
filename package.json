@@ -2,7 +2,6 @@
   "name": "sahih-frontend",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://boburjon7791.github.io/sahih-frontend",
   "dependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "i18next": "^23.4.6",
@@ -15,9 +14,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
