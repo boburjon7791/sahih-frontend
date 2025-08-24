@@ -60,7 +60,7 @@ const HomePage = () => {
                         {/* Faqat bitta rasm ko'rsatish uchun */}
                         <div className="category-image-container">
                             <img
-                                src={cat.image_resources.length > 1 ? `${api.urls.RESOURCES}/${cat.image_resources[0].token}` : '/images/no-image.png'}
+                                src={cat.image_resources.length > 0 ? `${api.urls.RESOURCES}/${cat.image_resources[0].token}` : '/images/no-image.png'}
                                 alt={cat.name || "No name"}
                                 className="category-image"
                                 onError={(e) => {
