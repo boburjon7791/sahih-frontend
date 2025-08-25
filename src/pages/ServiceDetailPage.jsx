@@ -8,39 +8,39 @@ import VideoWithLoader from "../components/VideoWithLoader";
 import LanguageSelector from '../components/LanguageSelector';
 import { useTranslation } from 'react-i18next';
 import HomeButton from "../components/HomeButton";
+import axios from '../utils/api.js';
+import ImageWithPreview from "../components/ImageWIthPreview";
 
 const ServiceDetailPage = () => {
     const { serviceId } = useParams();
     const [service, setService] = useState({});
     const { t,i18n } = useTranslation();
 
-    useEffect(() => {
-        const filters = new URLSearchParams({
-            page: 0,
-            limit: 10,
-            id: serviceId
-        });
+    const [totalItems, setTotalItems] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
 
-        fetch(`${api.urls.SERVICES}?${filters.toString()}`,
-            {
-                method: 'GET',
-                headers: {
-                    'Accept-Language': localStorage.getItem('lang') || 'uz',
-                    'Content-Type': 'application/json'
+    const filters = {
+        page: 0,
+        limit: 10,
+        id: serviceId
+    };
+
+    useEffect(() => {
+
+        axios.get(api.urls.SERVICES, { params: filters })
+            .then(response =>{
+                const res = response;
+                if (res.data.rows.length === 0){
+                    console.log(res.data + ' data not found');
+                    return;
                 }
+                setService(res.data.rows[0]);
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.rows && data.rows.length > 0) {
-                    setService(data.rows[0]);
-                } else {
-                    setService({});
-                }
-            })
-            .catch(err => {
-                console.error("API error:", err);
+            .catch(reason => {
+                console.log(reason);
                 setService({});
             });
+
     }, [serviceId]); // ✅ dependency qo‘shildi
 
     return (
@@ -55,14 +55,11 @@ const ServiceDetailPage = () => {
                 {/* Rasmlar */}
                 {service?.image_resources?.length > 0 ? (
                     service.image_resources.map(img => (
-                        <img
+                        <ImageWithPreview
                             key={img.id}
                             src={`${api.urls.RESOURCES}/${img.token}`}
                             alt={service.name}
                             className='media-image'
-                            onError={(e) => {
-                                e.currentTarget.src = '/images/no-image.png';
-                            }}
                         />
                     ))
                 ) : (

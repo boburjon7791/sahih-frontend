@@ -7,6 +7,8 @@ import api from '../utils/constants.js';
 import ImageWithLoader from '../components/ImageWithLoader';
 import LanguageSelector from '../components/LanguageSelector';
 import HomeButton from "../components/HomeButton";
+import Pagination from "../components/Pagination";
+import axios from '../utils/api.js'
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -14,27 +16,26 @@ const HomePage = () => {
 
     const [categories, setCategories] = useState([]);
 
-    const filters = new URLSearchParams({
-        page : 0,
-        limit : 10
-    });
+    const [totalItems, setTotalItems] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const filters = {
+        page : currentPage - 1,
+        limit : 4
+    };
 
     useEffect(() => {
-        fetch(`${api.urls.CATEGORIES}?${filters.toString()}`,
-            {
-                method: 'GET',
-                headers: {
-                    'Accept-Language': localStorage.getItem('lang') || 'uz',
-                    'Content-Type': 'application/json'
-                }
+        axios.get(api.urls.CATEGORIES, { params: filters })
+            .then((response) => {
+                setCategories(response.data.rows);
+                setTotalItems(response.data.size); // backend total sonni qaytaradi
             })
-            .then(res => res.json())
-            .then(data => setCategories(data.rows))
             .catch(err => {
                 console.error("API error:", err);
                 setCategories([]);
+                setTotalItems(0);
             });
-    }, []);
+    }, [currentPage]);
 
     return (
         <div className="home-container">
@@ -73,6 +74,11 @@ const HomePage = () => {
                     </div>
                 ))}
             </div>
+            <Pagination
+                currentPage={currentPage}
+                itemsPerPage={filters.limit}
+                totalItems={totalItems}
+                onPageChange={page => setCurrentPage(page)} />
             <Footer/>
         </div>
     );

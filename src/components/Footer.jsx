@@ -42,7 +42,7 @@ const Footer = () => {
             <div className="footer-logo">
                 <img src="/images/logo2.png" alt="Logo"/>
             </div>
-            <p>
+            <p className="footer-description">
                 {t('l_footer_description')}
             </p>
             <h4>{t('l_connection')}:</h4>

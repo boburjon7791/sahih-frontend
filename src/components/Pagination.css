@@ -1,0 +1,47 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin: 20px 0;
+}
+
+.pagination-btn {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pagination-btn:hover {
+    background: #f0f0f0;
+}
+
+.pagination-btn.active {
+    background: #56606a;
+    color: white;
+    border-color: #090909;
+    font-weight: bold;
+}
+
+.pagination-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.pagination-dots {
+    padding: 6px 12px;
+    color: #666;
+}
+
+
+/* 📱 Responsivlik */
+@media (max-width: 1080px) {
+    .pagination-btn {
+        font-size: 50px;   /* Matn kattalashadi */
+        padding: 10px 25px; /* Bosish qulay bo‘ladi */
+        border-radius: 20px; /* Yumaloqroq qilib chiqarish mumkin */
+    }
+}

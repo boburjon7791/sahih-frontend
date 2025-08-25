@@ -44,6 +44,10 @@
     text-decoration: underline;
 }
 
+.footer-description{
+    font-size: 1.2rem;
+}
+
 
 /* 📱 Responsivlik */
 @media (max-width: 1080px) {

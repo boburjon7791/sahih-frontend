@@ -1,0 +1,72 @@
+body.no-scroll {
+    overflow: hidden; /* scrollni bloklaydi */
+}
+
+
+.thumbnail {
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+.preview-box {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -5%);
+
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 10px;
+    padding: 10vh 5vw; /* ekran hajmiga mos ravishda */
+    display: inline-block;
+    z-index: 1000;
+}
+
+
+.preview-img {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 10px;
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* 📱 Responsivlik */
+@media (max-width: 1080px) {
+    .preview-box{
+        top: 10%;
+        transform: translate(-50%, -10%);
+    }
+
+    .close-btn {
+        font-size: 100px;
+    }
+}

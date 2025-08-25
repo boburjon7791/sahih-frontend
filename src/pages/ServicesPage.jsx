@@ -7,6 +7,8 @@ import api from '../utils/constants.js';
 import ImageWithLoader from "../components/ImageWithLoader";
 import LanguageSelector from '../components/LanguageSelector';
 import HomeButton from "../components/HomeButton";
+import axios from '../utils/api.js';
+import Pagination from "../components/Pagination";
 
 const ServicesPage = () => {
     const { categoryId } = useParams();
@@ -14,27 +16,28 @@ const ServicesPage = () => {
     const [services, setServices] = useState([]);
     const { t,i18n } = useTranslation();
 
+    const [totalItems, setTotalItems] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const filters = {
+        page : currentPage - 1,
+        limit : 10,
+        categories_id : categoryId
+    };
+
     useEffect(() => {
-        const filters = new URLSearchParams({
-            page : 0,
-            limit : 10,
-            categories_id : categoryId
-        })
-        fetch(`${api.urls.SERVICES}?${filters.toString()}`,
-            {
-                method: 'GET',
-                headers: {
-                    'Accept-Language': localStorage.getItem('lang') || 'uz',
-                    'Content-Type': 'application/json'
-                }
+        axios.get(api.urls.SERVICES, { params: filters })
+            .then((response) => {
+                const res = response;
+                setServices(res.data.rows);
+                setTotalItems(res.data.size);
             })
-            .then(res => res.json())
-            .then(data => setServices(data.rows))
-            .catch(err => {
-                console.error("API error:", err);
+            .catch(reason => {
+                console.log(reason);
                 setServices([]);
+                setTotalItems(0);
             });
-    }, []);
+    }, [currentPage]);
 
     return (
         <div className="services-wrapper">
@@ -71,6 +74,11 @@ const ServicesPage = () => {
                     </li>
                 ))}
             </ul>
+            <Pagination
+                currentPage={currentPage}
+                itemsPerPage={filters.limit}
+                totalItems={totalItems}
+                onPageChange={page => setCurrentPage(page)} />
             <Footer/>
         </div>
     );
