@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://192.168.152.135:8080/api';
+export const BASE_URL = 'http://192.168.51.135:8080/api';
 // export const BASE_URL = '/api';
 
 export const api = {

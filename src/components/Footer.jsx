@@ -61,7 +61,7 @@ const Footer = () => {
                 </p>
             </div>
             <p className="footer-copy">
-                © 2025. {t('l_all_rights_reserved')} <br/>
+                © {new Date().getFullYear()}. {t('l_all_rights_reserved')} <br/>
                 <span>Made ❤️ by <a href={contacts.programmer_contact ? contacts.programmer_contact : '-'} target="_blank"
                                     rel="noopener noreferrer">Soliyev Boburjon</a></span>
             </p>

@@ -55,12 +55,15 @@ const ServiceDetailPage = () => {
                 {/* Rasmlar */}
                 {service?.image_resources?.length > 0 ? (
                     service.image_resources.map(img => (
-                        <ImageWithPreview
-                            key={img.id}
-                            src={`${api.urls.RESOURCES}/${img.token}`}
-                            alt={service.name}
-                            className='media-image'
-                        />
+                        <img
+                            src={api.urls.RESOURCES+'/'+img.token}
+                        alt={service.name}
+                        className='media-image'
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = "/images/no-image.png";
+                        }}
+                    />
                     ))
                 ) : (
                     <p class="no-service-image">{t('l_messages.l_no_image')}</p>
